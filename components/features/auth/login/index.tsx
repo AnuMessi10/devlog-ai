@@ -1,12 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
-import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,14 +14,14 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useLogin } from '@/hooks/useLogin';
 import type { LoginFormData } from '@/lib/validations/auth';
 import { loginSchema } from '@/lib/validations/auth';
 
 import styles from './index.module.scss';
 
-export function LoginView() {
-    const router = useRouter();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+export default function Login() {
+    const { login, isLoading } = useLogin();
 
     const form = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
@@ -36,29 +32,10 @@ export function LoginView() {
     });
 
     const handleSubmit = form.handleSubmit(async values => {
-        try {
-            setIsSubmitting(true);
-            const result = await signIn('credentials', {
-                email: values.email,
-                password: values.password,
-                redirect: false,
-            });
-
-            if (result?.error) {
-                toast.error(result.error);
-                return;
-            }
-
-            toast.success('Welcome back! Redirecting to your dashboard.');
-            router.push('/dashboard');
-            router.refresh();
-        } catch (error) {
-            console.error(error);
-            toast.error('We encountered an issue while signing you in. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
+        await login(values);
     });
+
+    const isSubmitting = form.formState.isSubmitting || isLoading;
 
     return (
         <div className={styles.root}>
@@ -137,5 +114,3 @@ export function LoginView() {
         </div>
     );
 }
-
-export default LoginView;

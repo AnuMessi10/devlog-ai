@@ -1,12 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { isAxiosError } from 'axios';
-import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,15 +14,14 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { registerUser } from '@/lib/services/auth';
+import { useRegister } from '@/hooks/useRegister';
 import type { RegisterFormData } from '@/lib/validations/auth';
 import { registerSchema } from '@/lib/validations/auth';
 
 import styles from './index.module.scss';
 
-export function RegisterView() {
-    const router = useRouter();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+export default function Register() {
+    const { register, isLoading } = useRegister();
 
     const form = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
@@ -39,31 +34,10 @@ export function RegisterView() {
     });
 
     const handleSubmit = form.handleSubmit(async values => {
-        try {
-            setIsSubmitting(true);
-            const payload = {
-                name: values.name,
-                email: values.email,
-                password: values.password,
-            };
-
-            await registerUser(payload);
-            toast.success('Account created! You can now sign in.');
-            router.push('/login');
-        } catch (error) {
-            if (isAxiosError(error)) {
-                const message =
-                    error.response?.data?.message ??
-                    'Unable to create your account. Please try again.';
-                toast.error(message);
-            } else {
-                console.error(error);
-                toast.error('We encountered an issue while creating your account.');
-            }
-        } finally {
-            setIsSubmitting(false);
-        }
+        await register(values);
     });
+
+    const isSubmitting = form.formState.isSubmitting || isLoading;
 
     return (
         <div className={styles.root}>
@@ -179,5 +153,3 @@ export function RegisterView() {
         </div>
     );
 }
-
-export default RegisterView;
