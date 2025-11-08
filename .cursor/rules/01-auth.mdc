@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+---
+
+# Auth First: Forms, Validation, Protected Routes
+
+- Use **react-hook-form** + **@hookform/resolvers/zod** + **zod** for all forms.
+- Validation schemas live in `lib/schemas/[feature].ts` and are imported into forms.
+- For protected pages, generate a **DashboardLayout** that checks auth and renders a skeleton while loading.
+- Keep auth context/provider in `features/auth/providers/AuthProvider.tsx`. Expose `useAuth()` for consumer Views.
+- Never put network calls inside components; use service functions/hooks in Worker layer.
+- Example files to create:
+    - `features/auth/components/LoginForm/index.tsx`
+    - `features/auth/providers/AuthProvider.tsx`
+    - `lib/schemas/auth.ts`
+    - `app/(protected)/dashboard/layout.tsx`

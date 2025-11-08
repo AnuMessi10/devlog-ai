@@ -1,0 +1,9 @@
+---
+alwaysApply: false
+---
+# UI, Accessibility, Responsiveness
+
+- Mobile-first; ensure layout breaks at sm/md/lg/xl.
+- Keyboard focus order, focus-visible, and ARIA roles/states for interactive controls.
+- Provide labels for inputs, associate errors from react-hook-form via `aria-describedby`.
+- Use semantic HTML; buttons for actions, anchors for navigation.

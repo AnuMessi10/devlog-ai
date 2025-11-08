@@ -1,0 +1,18 @@
+---
+alwaysApply: true
+---
+
+# Naming, Folders, and Styling
+
+- Folder names describe the topic. The **index file holds the code**.
+    - e.g. `components > features > biometric > index.tsx`
+    - e.g. `hooks > useMediaQuery > index.ts`
+    - e.g. `lib > utils > date > index.ts`
+- Screens use paired CSS Modules:
+    - `screens > ContactUs > index.tsx`
+    - `screens > ContactUs > index.module.scss`
+    - Inside component: `import styles from './index.module.scss'`
+    - Apply Tailwind utility semantics **as class names inside SCSS modules**:
+        - `.root { @apply container mx-auto p-4; }`
+        - `.disclaimer { @apply text-xs text-muted-foreground; }`
+- Component class wiring:
