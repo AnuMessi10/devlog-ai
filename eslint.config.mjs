@@ -1,10 +1,15 @@
+import { createRequire } from 'module';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
 
+const require = createRequire(import.meta.url);
+const mvw = require('./.eslintrc-mvw.json');
+
 const eslintConfig = defineConfig([
     ...nextVitals,
     ...nextTs,
+    ...mvw,
     // Override default ignores of eslint-config-next.
     globalIgnores([
         // Default ignores of eslint-config-next:

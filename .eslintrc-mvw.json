@@ -1,0 +1,17 @@
+[
+    {
+        "files": ["components/**/*.{ts,tsx}"],
+        "rules": {
+            "no-restricted-imports": [
+                "error",
+                {
+                    "patterns": [
+                        "**/features/*/services/*",
+                        "**/features/*/hooks/*",
+                        "**/lib/repos/*"
+                    ]
+                }
+            ]
+        }
+    }
+]

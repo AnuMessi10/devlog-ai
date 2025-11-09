@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const http = axios.create({
+const instance = axios.create({
     baseURL: '/api',
     withCredentials: true,
     headers: {
@@ -8,7 +8,7 @@ export const http = axios.create({
     },
 });
 
-http.interceptors.response.use(
+instance.interceptors.response.use(
     response => response,
     error => {
         if (error.response) {
@@ -20,3 +20,7 @@ http.interceptors.response.use(
         );
     }
 );
+
+export const client = () => instance;
+
+export { instance as http };
