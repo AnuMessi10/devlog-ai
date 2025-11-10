@@ -1,6 +1,6 @@
 import type { Project } from '@prisma/client';
 
-import type { ProjectFormData } from '@/lib/validations/project';
+import type { ProjectFormData } from '@/lib/schemas/project';
 
 export type RemoteUrl = `http${string}`;
 

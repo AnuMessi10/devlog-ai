@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
 import { prisma } from '@/lib/prisma';
-import { registerPayloadSchema } from '@/lib/validations/auth';
+import { registerPayloadSchema } from '@/lib/schemas/auth';
 
 export async function POST(request: Request) {
     try {

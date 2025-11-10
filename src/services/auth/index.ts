@@ -1,5 +1,5 @@
 import { http } from '@/lib/http/client';
-import type { RegisterFormData } from '@/lib/validations/auth';
+import type { RegisterFormData } from '@/lib/schemas/auth';
 
 type RegisterPayload = Pick<RegisterFormData, 'name' | 'email' | 'password'>;
 

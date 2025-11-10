@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
 
-import type { RegisterFormData } from '@/lib/validations/auth';
+import type { RegisterFormData } from '@/lib/schemas/auth';
 import { registerUser } from '@/services/auth';
 
 type RegisterResult = {

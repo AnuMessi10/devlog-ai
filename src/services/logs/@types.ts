@@ -1,6 +1,6 @@
 import type { Log } from '@prisma/client';
 
-import type { LogFormData } from '@/lib/validations/logs';
+import type { LogFormData } from '@/lib/schemas/logs';
 
 export type RemoteUrl = `http${string}`;
 

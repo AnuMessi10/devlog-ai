@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
 
-import type { LoginFormData } from '@/lib/validations/auth';
+import type { LoginFormData } from '@/lib/schemas/auth';
 
 type LoginResult = {
     success: boolean;

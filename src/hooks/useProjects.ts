@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import type { Project } from '@prisma/client';
 
-import type { ProjectFormData } from '@/lib/validations/project';
+import type { ProjectFormData } from '@/lib/schemas/project';
 import { projectService } from '@/services/projects';
 import { useSessionStore } from '@/stores/session';
 

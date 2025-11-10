@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import type { Log } from '@prisma/client';
 
-import type { LogFormData } from '@/lib/validations/logs';
+import type { LogFormData } from '@/lib/schemas/logs';
 import { logService } from '@/services/logs';
 import { useSessionStore } from '@/stores/session';
 

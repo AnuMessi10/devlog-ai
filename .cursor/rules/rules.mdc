@@ -1,0 +1,118 @@
+---
+alwaysApply: true
+---
+# Cursor Rules — Devlog AI
+
+## ✅ Project Architecture
+
+| Folder | Responsibility |
+|--------|----------------|
+src/app | Next.js routing only (no UI or business logic) |
+src/screens | Page-level UI (views) — `.tsx` + `.module.scss` |
+src/components | Shared UI primitives (shadcn, generic UI) |
+src/services | Business logic & API functions (auth, logs, projects) |
+src/hooks | Global reusable hooks (e.g. useAuth, useMediaQuery) |
+src/stores | Zustand global state |
+src/layouts | Layout components (dashboard shell) |
+src/providers | Theme, toast, session providers |
+src/lib | Infra: prisma, http client, utils, schemas |
+src/styles | Global styles |
+src/types | Global TypeScript types |
+
+✅ Screens import services/hooks/components  
+✅ Pages import screens  
+✅ Components do not import screens  
+✅ Services do not import UI or screens  
+✅ lib never imports app/screens/services/hooks
+
+app → screens → services/hooks/components → lib
+
+---
+
+## ❌ Do NOT
+
+- ❌ Do not auto-introduce atomic folders (atoms/molecules/organisms)
+- ❌ Do not generate barrel exports (`index.ts` re-export patterns)
+- ❌ Do not move code between layers automatically
+- ❌ Do not put business logic inside `src/app` or `src/screens`
+
+---
+
+## ✅ File Placement Rules
+
+**Routes**
+- `src/app/**/page.tsx` → only render screen components
+
+**Screens**
+- `src/screens/**` → page UI only, may import styles
+
+**Components**
+- `src/components/**` → shadcn primitives + reusable UI only
+
+**Services**
+- `src/services/{domain}/` → business logic + API calls
+- Return plain data objects, no UI logic
+
+**Hooks**
+- Only global hooks belong in `src/hooks/**`
+
+**Stores**
+- Only zustand stores in `src/stores/**`
+
+**lib**
+- prisma, http client, utils, schemas — infrastructure only
+
+---
+
+## 🎨 UI & Styling Rules
+
+- Tailwind for layout & spacing
+- SCSS Modules allowed for screen-specific styling only
+- Components must support accessibility (focus, ARIA when needed)
+
+---
+
+## 🔐 Client/Server Rules
+
+- Mark client modules with `"use client"` only when needed
+- Services may call API routes or Prisma via `lib`
+
+> Not all services need `"use server"` — only when explicitly requested.
+
+---
+
+## ⚙️ Behavior Expected from Cursor
+
+- Ask before creating new top-level folders
+- Ask before reorganizing code
+- Ask when unsure where a file belongs:
+
+> "Should this be in screens, components, services, hooks, stores, or lib?"
+
+- Follow the layer hierarchy strictly
+- Do not reintroduce barrels or feature folders
+
+---
+
+## ✅ Dev Flow Expectations
+
+Before creating new pages/components/services, Cursor should:
+
+1) Confirm folder placement
+2) Use absolute imports (`@/`)
+3) Tailwind first, but components can co-locate .scss when it improves clarity or encapsulation
+4) Keep file names consistent (`index.tsx` inside screen/component folders)
+
+---
+
+## 🧪 Quality
+
+- Use TypeScript
+- Validate input via Zod schemas in `src/lib/schemas/*`
+- Wrap async calls with try/catch
+- Use `sonner` for toast UX
+
+---
+
+This file represents the **final architecture rules**.  
+Cursor should *not* deviate from them without explicit approval.

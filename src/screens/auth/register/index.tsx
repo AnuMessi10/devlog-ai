@@ -8,8 +8,8 @@ import { Button } from '@/components/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Input } from '@/components/input';
 import { useRegister } from '@/hooks/useRegister';
-import type { RegisterFormData } from '@/lib/validations/auth';
-import { registerSchema } from '@/lib/validations/auth';
+import type { RegisterFormData } from '@/lib/schemas/auth';
+import { registerSchema } from '@/lib/schemas/auth';
 
 import styles from './index.module.scss';
 
