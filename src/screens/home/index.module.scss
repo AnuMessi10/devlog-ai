@@ -1,0 +1,191 @@
+@reference 'tailwindcss';
+
+.root {
+    @apply min-h-screen;
+    /* NOTE: Tailwind v4 doesn't emit our custom palette utilities during @apply, so we fall back to CSS variables. */
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.main {
+    @apply mx-auto flex w-full max-w-6xl flex-col gap-24 px-6 py-24;
+
+    @screen md {
+        @apply px-10;
+    }
+}
+
+.hero {
+    @apply grid gap-16 lg:grid-cols-[1.5fr_minmax(0,1fr)] lg:items-center;
+}
+
+.heroContent {
+    @apply flex flex-col gap-6;
+}
+
+.pill {
+    @apply inline-flex w-fit items-center rounded-full border px-4 py-1 text-xs font-medium uppercase tracking-wide;
+    border-color: var(--border);
+    background-color: color-mix(in srgb, var(--secondary) 60%, transparent);
+    color: var(--secondary-foreground);
+}
+
+.title {
+    @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
+}
+
+.subtitle {
+    @apply max-w-2xl text-base sm:text-lg;
+    color: var(--muted-foreground);
+}
+
+.actions {
+    @apply flex flex-col gap-3 sm:flex-row;
+}
+
+.primaryCta {
+    @apply inline-flex h-12 items-center justify-center rounded-lg px-6 text-base font-semibold transition;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+}
+
+.secondaryCta {
+    @apply inline-flex h-12 items-center justify-center rounded-lg border px-6 text-base font-semibold transition;
+    border-color: var(--border);
+    color: var(--foreground);
+
+    &:hover {
+        border-color: transparent;
+        background-color: var(--muted);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+}
+
+.metrics {
+    @apply grid gap-6 sm:grid-cols-3;
+
+    dt {
+        @apply text-sm font-semibold uppercase tracking-wide;
+        color: var(--muted-foreground);
+    }
+
+    dd {
+        @apply mt-1 text-sm;
+        color: color-mix(in srgb, var(--foreground) 80%, transparent);
+    }
+}
+
+.heroAside {
+    @apply flex justify-center lg:justify-end;
+}
+
+.card {
+    @apply w-full max-w-sm rounded-2xl border p-6 shadow-lg backdrop-blur;
+    border-color: var(--border);
+    background-color: color-mix(in srgb, var(--card) 80%, transparent);
+
+    h2 {
+        @apply text-lg font-semibold;
+        color: var(--foreground);
+    }
+
+    ul {
+        @apply mt-4 space-y-4;
+    }
+
+    li {
+        @apply flex gap-4 rounded-xl border p-4;
+        border-color: color-mix(in srgb, var(--border) 60%, transparent);
+        background-color: color-mix(in srgb, var(--background) 60%, transparent);
+    }
+
+    span {
+        @apply text-xl;
+    }
+
+    p {
+        @apply text-sm font-medium;
+        color: var(--foreground);
+    }
+
+    small {
+        @apply text-xs;
+        color: var(--muted-foreground);
+    }
+}
+
+.section {
+    @apply flex flex-col gap-12;
+}
+
+.sectionHeader {
+    @apply flex flex-col gap-4 text-center lg:text-left;
+
+    h2 {
+        @apply text-3xl font-semibold;
+    }
+
+    p {
+        @apply mx-auto max-w-3xl text-base lg:mx-0;
+        color: var(--muted-foreground);
+    }
+}
+
+.features {
+    @apply grid gap-6;
+
+    @screen md {
+        @apply grid-cols-3;
+    }
+
+    article {
+        @apply h-full rounded-xl border p-6 text-left transition hover:shadow-lg;
+        border-color: var(--border);
+        background-color: color-mix(in srgb, var(--card) 60%, transparent);
+    }
+
+    h3 {
+        @apply text-xl font-semibold;
+    }
+
+    p {
+        @apply mt-3 text-sm;
+        color: var(--muted-foreground);
+    }
+}
+
+.cta {
+    @apply flex flex-col gap-6 rounded-2xl border p-8 shadow-lg;
+    border-color: var(--border);
+    background-color: color-mix(in srgb, var(--card) 80%, transparent);
+
+    @screen md {
+        @apply flex-row items-center justify-between;
+    }
+
+    h2 {
+        @apply text-2xl font-semibold;
+    }
+
+    p {
+        @apply mt-2 max-w-xl text-base;
+        color: var(--muted-foreground);
+    }
+}
+
+.ctaActions {
+    @apply flex flex-col gap-3 sm:flex-row;
+}

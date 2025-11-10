@@ -1,0 +1,36 @@
+@reference 'tailwindcss';
+
+.root {
+    @apply min-h-screen;
+    /* NOTE: Using CSS variables directly because Tailwind v4 doesn't emit our custom palette utilities during @apply. */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.header {
+    @apply border-b backdrop-blur;
+    border-color: var(--border);
+    background-color: color-mix(in srgb, var(--card) 60%, transparent);
+}
+
+.headerContent {
+    @apply mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4;
+}
+
+.userInfo {
+    @apply flex flex-col;
+}
+
+.userLabel {
+    @apply text-sm font-medium;
+    /* NOTE: Custom palette color applied manually for the same Tailwind v4 @apply limitation. */
+    color: var(--muted-foreground);
+}
+
+.userName {
+    @apply text-base font-semibold;
+}
+
+.main {
+    @apply mx-auto w-full max-w-6xl px-4 py-8;
+}

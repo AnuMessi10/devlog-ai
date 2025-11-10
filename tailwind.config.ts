@@ -5,13 +5,11 @@ import tailwindcssAnimate from 'tailwindcss-animate';
 
 const config: Config = {
     darkMode: ['class', '[data-theme="dark"]'],
-    content: [
-        './pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './components/**/*.{js,ts,jsx,tsx,mdx}',
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
-    ],
+    content: ['./src/**/*.{js,ts,jsx,tsx,mdx,css,scss}'],
     theme: {
         extend: {
+            // NOTE: These palette entries map to CSS variables. In module styles we reference the vars directly
+            // because Tailwind v4 does not emit the corresponding utilities when used only inside @apply.
             // ============================================
             // COLORS - Define once, use everywhere
             // ============================================
@@ -105,6 +103,10 @@ const config: Config = {
                     DEFAULT: '#3399ff',
                 },
             },
+            borderColor: {
+                DEFAULT: 'var(--border)',
+                border: 'var(--border)',
+            },
 
             // ============================================
             // TYPOGRAPHY
@@ -130,6 +132,10 @@ const config: Config = {
             // ============================================
             spacing: {
                 // Add any custom spacing if needed
+            },
+
+            maxWidth: {
+                '6xl': '72rem',
             },
 
             // ============================================

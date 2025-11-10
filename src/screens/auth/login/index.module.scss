@@ -1,0 +1,49 @@
+@reference 'tailwindcss';
+
+.root {
+    @apply flex min-h-screen items-center justify-center px-4 py-12;
+    /* NOTE: Tailwind v4 won't emit custom palette utilities during @apply, so we set them via CSS variables. */
+    background-color: var(--bg-secondary);
+}
+
+.card {
+    @apply w-full max-w-md rounded-2xl border p-8 shadow-2xl;
+    /* NOTE: Custom palette colors applied manually due to Tailwind v4 @apply limitations. */
+    color: var(--card-foreground);
+    background-color: var(--card);
+    border-color: var(--border);
+}
+
+.header {
+    @apply flex flex-col gap-2 text-center;
+}
+
+.title {
+    @apply text-2xl font-semibold;
+}
+
+.subtitle {
+    @apply text-sm;
+    /* NOTE: Custom palette colors applied manually due to Tailwind v4 @apply limitations. */
+    color: var(--muted-foreground);
+}
+
+.form {
+    @apply mt-8 space-y-4;
+}
+
+.actions {
+    @apply flex items-center justify-between;
+}
+
+.link {
+    @apply text-sm hover:underline;
+    /* NOTE: Custom palette colors applied manually due to Tailwind v4 @apply limitations. */
+    color: var(--primary);
+}
+
+.footer {
+    @apply mt-6 text-center text-sm;
+    /* NOTE: Custom palette colors applied manually due to Tailwind v4 @apply limitations. */
+    color: var(--muted-foreground);
+}

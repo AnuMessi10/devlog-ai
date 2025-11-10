@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ============================================
+// FONTS (Self-hosted)
+// ============================================
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --radius: 0.625rem;
+
+    // Shadcn tokens
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: #0066e6;
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: #f5f7fa;
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: #e5e7eb;
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: #00e6e6;
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0066e6;
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+
+    // Sidebar tokens
+    --sidebar: #ffffff;
+    --sidebar-foreground: #1a1d23;
+    --sidebar-primary: #0066e6;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #00e6e6;
+    --sidebar-accent-foreground: #003d80;
+    --sidebar-border: #e2e8f0;
+    --sidebar-ring: #0066e6;
+
+    // Legacy theme helpers
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f7fa;
+    --bg-tertiary: #e8ecf1;
+    --text-primary: #1a1d23;
+    --text-secondary: #4a5568;
+    --text-tertiary: #718096;
+}
+
+[data-theme='dark'],
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: #00e6e6;
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: #151922;
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: #1f2430;
+    --muted-foreground: #7f8694;
+    --accent: #1f2430;
+    --accent-foreground: #e6e9ef;
+    --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: #ffffff;
+    --border: #2d3748;
+    --input: #2d3748;
+    --ring: #00e6e6;
+
+    --sidebar: #151922;
+    --sidebar-foreground: #e6e9ef;
+    --sidebar-primary: #00e6e6;
+    --sidebar-primary-foreground: #00141a;
+    --sidebar-accent: #1f2430;
+    --sidebar-accent-foreground: #e6e9ef;
+    --sidebar-border: #1f2430;
+    --sidebar-ring: #00e6e6;
+
+    --bg-primary: #0a0e14;
+    --bg-secondary: #151922;
+    --bg-tertiary: #1f2430;
+    --text-primary: #e6e9ef;
+    --text-secondary: #b3b9c5;
+    --text-tertiary: #7f8694;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: theme('fontFamily.sans');
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+    * {
+        border-color: var(--border);
+        outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+    }
+}
+
+// ============================================
+// CUSTOM SCROLLBAR
+// ============================================
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 9999px;
+    border: 3px solid var(--bg-secondary);
+
+    &:hover {
+        background: var(--text-secondary);
+    }
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+    background: #4a5160;
+    border-color: #151922;
+
+    &:hover {
+        background: #7f8694;
+    }
+}
+
+// ============================================
+// SELECTION COLOR
+// ============================================
+::selection {
+    color: #ffffff;
+    background: var(--accent);
+}
