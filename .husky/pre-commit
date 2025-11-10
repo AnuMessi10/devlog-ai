@@ -1,5 +1,8 @@
-# .husky/pre-commit
+#!/bin/sh
+set -e
 
-bash << EOF
+# Fix lint + format on staged files
 bunx lint-staged
-EOF
+
+# Reject type errors
+bun run type-check
